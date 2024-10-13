@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-// import 'package:audioplayers/audioplayers.dart';
-// import 'package:english_words/english_words.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text("Test"),
           centerTitle: true,
@@ -22,14 +20,30 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
         body: Center(
-          child: TextButton(
-              onPressed: () {
-                final player = AudioPlayer();
-               player.play(AssetSource('audios/marching-loop.aif.mp3'));
-              },
-              child: Text("click me")),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+                buildkey(Colors.red,1),
+                buildkey(Colors.blue,2),
+                buildkey(Colors.orange,3),
+                buildkey(Colors.greenAccent,4), 
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+Widget buildkey(var color,int number) {
+  return Expanded(
+    child: TextButton(
+      style:
+          ButtonStyle(backgroundColor: MaterialStateProperty.all(color)),
+      onPressed: () {
+        print("clicked button $number");
+      },
+      child: Text(""),
+    ),
+  );
 }
